@@ -1,0 +1,29 @@
+{
+  "name": "edersoares/brazilian",
+  "description": "A package for Laravel about Brazil",
+  "keywords": ["laravel", "brazil", "states", "cities"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Eder Soares",
+      "email": "edersoares@me.com"
+    }
+  ],
+  "require": {
+    "illuminate/console": "~5.6",
+    "illuminate/database": "~5.6",
+    "illuminate/support": "~5.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Brazilian\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Brazilian\\Providers\\BrazilianServiceProvider"
+      ]
+    }
+  }
+}
