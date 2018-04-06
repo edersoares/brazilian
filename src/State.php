@@ -19,4 +19,16 @@ class State extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * Cities.
+     *
+     * @see \Brazilian\City
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function cities()
+    {
+        return $this->hasMany(City::class);
+    }
 }

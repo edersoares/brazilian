@@ -19,4 +19,16 @@ class City extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * State.
+     *
+     * @see \Brazilian\State
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
 }
