@@ -10,9 +10,6 @@ Populate the database with brazilian states and brazilian cities.
 # Require the package
 composer require edersoares/brazilian
 
-# Run the migrations
-php artisan migrate
-
 # Install
 php artisan brazilian:install
 ````

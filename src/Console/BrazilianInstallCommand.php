@@ -29,6 +29,7 @@ class BrazilianInstallCommand extends Command
      */
     public function handle()
     {
+        $this->call('migrate --force');
         $this->info('Brazilian states imported: ' . $this->importStates());
         $this->info('Brazilian cities imported: ' . $this->importCities());
     }
