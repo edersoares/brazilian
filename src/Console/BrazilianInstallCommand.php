@@ -69,7 +69,7 @@ class BrazilianInstallCommand extends Command
      */
     protected function showImportedInfoForEach()
     {
-        return 100;
+        return 500;
     }
 
     /**
@@ -95,7 +95,7 @@ class BrazilianInstallCommand extends Command
                 $model::create($data);
             });
 
-            if ($i % $this->showImportedInformationEach() === 0) {
+            if ($i && $i % $this->showImportedInfoForEach() === 0) {
                 $this->info("  Imported: {$i}");
             }
         }
