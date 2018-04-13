@@ -23,6 +23,77 @@ class BrazilianInstallCommand extends Command
     protected $description = 'Install the brazilian package';
 
     /**
+     * Return the brazilian state model.
+     *
+     * @return string
+     */
+    protected function getStateModel()
+    {
+        return State::class;
+    }
+
+    /**
+     * Return the brazilian city model.
+     *
+     * @return string
+     */
+    protected function getCityModel()
+    {
+        return City::class;
+    }
+
+    /**
+     * Return the CSV filename of the brazilian states.
+     *
+     * @return string
+     */
+    protected function getStateFilename()
+    {
+        return __DIR__.'/../../database/data/brazilian-states.csv';
+    }
+
+    /**
+     * Return the CSV filename of the brazilian cities.
+     *
+     * @return string
+     */
+    protected function getCityFilename()
+    {
+        return __DIR__.'/../../database/data/brazilian-cities.csv';
+    }
+
+    /**
+     * Import a CSV file to database.
+     *
+     * @param string $model    Model name to import
+     * @param string $filename CSV filename
+     *
+     * @return int
+     */
+    protected function import($model, $filename)
+    {
+        $file = fopen($filename, 'r');
+        $cols = fgetcsv($file);
+
+        $this->info("Importing: {$model}");
+
+        for ($i = 0; $line = fgetcsv($file); $i++) {
+
+            $data = array_combine($cols, $line);
+
+            $model::unguarded(function () use ($model, $data) {
+                $model::create($data);
+            });
+
+            if ($i % 500 === 0) {
+                $this->info("  Imported: {$i}");
+            }
+        }
+
+        return $i;
+    }
+
+    /**
      * Execute the console command.
      *
      * @return mixed
@@ -30,51 +101,19 @@ class BrazilianInstallCommand extends Command
     public function handle()
     {
         $this->call('migrate');
-        $this->info('Brazilian states imported: ' . $this->importStates());
-        $this->info('Brazilian cities imported: ' . $this->importCities());
-    }
 
-    /**
-     * Import brazilian states and return the number of states imported.
-     *
-     * @return int
-     */
-    protected function importStates()
-    {
-        $file = fopen(__DIR__.'/../../database/data/brazilian-states.csv', 'r');
-        $cols = fgetcsv($file);
+        $states = $this->import(
+            $this->getStateModel(),
+            $this->getStateFilename()
+        );
 
-        for ($i = 0; $line = fgetcsv($file); $i++) {
+        $this->info("Brazilian states imported: {$states}");
 
-            $data = array_combine($cols, $line);
+        $cities = $this->import(
+            $this->getCityModel(),
+            $this->getCityFilename()
+        );
 
-            State::unguarded(function () use ($data) {
-                State::create($data);
-            });
-        }
-
-        return $i;
-    }
-
-    /**
-     * Import brazilian cities and return the number of cities imported.
-     *
-     * @return int
-     */
-    protected function importCities()
-    {
-        $file = fopen(__DIR__.'/../../database/data/brazilian-cities.csv', 'r');
-        $cols = fgetcsv($file);
-
-        for ($i = 0; $line = fgetcsv($file); $i++) {
-
-            $data = array_combine($cols, $line);
-
-            City::unguarded(function () use ($data) {
-                City::create($data);
-            });
-        }
-
-        return $i;
+        $this->info("Brazilian cities imported: {$cities}");
     }
 }
