@@ -63,6 +63,16 @@ class BrazilianInstallCommand extends Command
     }
 
     /**
+     * Return when information about importation should be shown.
+     *
+     * @return int
+     */
+    protected function showImportedInfoForEach()
+    {
+        return 100;
+    }
+
+    /**
      * Import a CSV file to database.
      *
      * @param string $model    Model name to import
@@ -77,7 +87,7 @@ class BrazilianInstallCommand extends Command
 
         $this->info("Importing: {$model}");
 
-        for ($i = 0; $line = fgetcsv($file); $i++) {
+        for ($i = 0; $line = fgetcsv($file); ++$i) {
 
             $data = array_combine($cols, $line);
 
@@ -85,7 +95,7 @@ class BrazilianInstallCommand extends Command
                 $model::create($data);
             });
 
-            if ($i % 500 === 0) {
+            if ($i % $this->showImportedInformationEach() === 0) {
                 $this->info("  Imported: {$i}");
             }
         }
@@ -100,6 +110,7 @@ class BrazilianInstallCommand extends Command
      */
     public function handle()
     {
+        $this->info('Installing Brazilian package..');
         $this->call('migrate');
 
         $states = $this->import(
