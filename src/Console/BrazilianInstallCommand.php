@@ -5,6 +5,7 @@ namespace Brazilian\Console;
 use Brazilian\City;
 use Brazilian\State;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Schema;
 
 class BrazilianInstallCommand extends Command
 {
@@ -110,6 +111,8 @@ class BrazilianInstallCommand extends Command
      */
     public function handle()
     {
+        Schema::disableForeignKeyConstraints();
+
         $this->info('Installing Brazilian package..');
         $this->call('migrate');
 
@@ -126,5 +129,7 @@ class BrazilianInstallCommand extends Command
         );
 
         $this->info("Brazilian cities imported: {$cities}");
+
+        Schema::enableForeignKeyConstraints();
     }
 }
