@@ -2,6 +2,7 @@
 
 namespace Brazilian\Console;
 
+use Brazilian\Bank;
 use Brazilian\City;
 use Brazilian\State;
 use Illuminate\Console\Command;
@@ -44,6 +45,16 @@ class BrazilianInstallCommand extends Command
     }
 
     /**
+     * Return the brazilian bank model.
+     *
+     * @return string
+     */
+    protected function getBankModel()
+    {
+        return Bank::class;
+    }
+
+    /**
      * Return the CSV filename of the brazilian states.
      *
      * @return string
@@ -61,6 +72,16 @@ class BrazilianInstallCommand extends Command
     protected function getCityFilename()
     {
         return __DIR__.'/../../database/data/brazilian-cities.csv';
+    }
+
+    /**
+     * Return the CSV filename of the brazilian banks.
+     *
+     * @return string
+     */
+    protected function getBankFilename()
+    {
+        return __DIR__.'/../../database/data/brazilian-banks.csv';
     }
 
     /**
@@ -129,6 +150,13 @@ class BrazilianInstallCommand extends Command
         );
 
         $this->info("Brazilian cities imported: {$cities}");
+
+        $banks = $this->import(
+            $this->getBankModel(),
+            $this->getBankFilename()
+        );
+
+        $this->info("Brazilian banks imported: {$banks}");
 
         Schema::enableForeignKeyConstraints();
     }

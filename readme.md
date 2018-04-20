@@ -16,7 +16,25 @@ php artisan brazilian:install
 
 ## Usage
 
-Use `Brazilian\City` or `Brazilian\State` model class directly or like a base model.
+Use as a model class directly or like a base model:
+
+- `Brazilian\Bank`
+- `Brazilian\State`
+- `Brazilian\State`
+
+A example for a bank custom model:
+
+```php
+use Brazilian\Bank;
+
+class BankCustomModel extends Bank
+{
+    public function hasCode()
+    {
+        return $this->id < 1000;
+    }
+}
+```
 
 A example for a city custom model:
 
@@ -49,6 +67,17 @@ class StateCustomModel extends State
 ### Tables
 
 Below, the tables that will be created in database.
+
+#### Bank
+
+- Table name: brazilian_banks
+- Primary key: id
+
+| Column   | Type    |
+|----------|---------|
+| id       | integer |
+| name     | string  |
+| agencies | integer |
 
 #### State
 
