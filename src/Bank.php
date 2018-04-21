@@ -20,6 +20,11 @@ class Bank extends Model
      */
     public $timestamps = false;
 
+    /**
+     * Return the bank code.
+     *
+     * @return string
+     */
     public function getCodeAttribute()
     {
         return str_pad($this->id, 3, '0', STR_PAD_LEFT);
