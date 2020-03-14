@@ -11,7 +11,7 @@ class City extends Model
      *
      * @var string
      */
-    protected $table = 'brazilian_cities';
+    protected $table = 'brazilian_city';
 
     /**
      * Indicates if the model should be timestamped.

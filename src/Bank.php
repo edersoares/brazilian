@@ -11,7 +11,7 @@ class Bank extends Model
      *
      * @var string
      */
-    protected $table = 'brazilian_banks';
+    protected $table = 'brazilian_bank';
 
     /**
      * Indicates if the model should be timestamped.

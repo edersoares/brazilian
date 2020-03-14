@@ -11,7 +11,7 @@ class State extends Model
      *
      * @var string
      */
-    protected $table = 'brazilian_states';
+    protected $table = 'brazilian_state';
 
     /**
      * Indicates if the model should be timestamped.

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBrazilianBanksTable extends Migration
+class CreateBrazilianCityTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateBrazilianBanksTable extends Migration
      */
     public function up()
     {
-        Schema::create('brazilian_banks', function (Blueprint $table) {
+        Schema::create('brazilian_city', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('state_id');
             $table->string('name');
-            $table->integer('agencies');
+            $table->foreign('state_id')->on('brazilian_state')->references('id');
         });
     }
 
@@ -27,6 +28,6 @@ class CreateBrazilianBanksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brazilian_banks');
+        Schema::dropIfExists('brazilian_city');
     }
 }
