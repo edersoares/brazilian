@@ -14,13 +14,6 @@ class City extends Model
     protected $table = 'brazilian_city';
 
     /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
      * State.
      *
      * @see \Brazilian\State

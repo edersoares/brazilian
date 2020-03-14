@@ -18,6 +18,7 @@ class CreateBrazilianStateTable extends Migration
             $table->string('name');
             $table->string('abbreviation');
             $table->unsignedInteger('capital_id');
+            $table->timestamps();
         });
     }
 

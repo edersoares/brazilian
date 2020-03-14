@@ -17,6 +17,7 @@ class CreateBrazilianBankTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('agencies');
+            $table->timestamps();
         });
     }
 

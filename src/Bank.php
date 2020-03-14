@@ -14,13 +14,6 @@ class Bank extends Model
     protected $table = 'brazilian_bank';
 
     /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
      * Return the bank code.
      *
      * @return string
