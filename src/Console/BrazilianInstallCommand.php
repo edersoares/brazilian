@@ -61,7 +61,7 @@ class BrazilianInstallCommand extends Command
      */
     protected function getStateFilename()
     {
-        return __DIR__.'/../../database/data/brazilian-states.csv';
+        return __DIR__.'/../../database/data/brazilian-state.csv';
     }
 
     /**
@@ -71,7 +71,7 @@ class BrazilianInstallCommand extends Command
      */
     protected function getCityFilename()
     {
-        return __DIR__.'/../../database/data/brazilian-cities.csv';
+        return __DIR__.'/../../database/data/brazilian-city.csv';
     }
 
     /**
@@ -81,7 +81,7 @@ class BrazilianInstallCommand extends Command
      */
     protected function getBankFilename()
     {
-        return __DIR__.'/../../database/data/brazilian-banks.csv';
+        return __DIR__.'/../../database/data/brazilian-bank.csv';
     }
 
     /**

@@ -18,7 +18,6 @@ class CreateBrazilianStateTable extends Migration
             $table->string('name');
             $table->string('abbreviation');
             $table->unsignedInteger('capital_id');
-            $table->foreign('capital_id')->on('brazilian_city')->references('id');
         });
     }
 
