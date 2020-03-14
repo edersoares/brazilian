@@ -20,7 +20,7 @@ Use as a model class directly or like a base model:
 
 - `Brazilian\Bank`
 - `Brazilian\State`
-- `Brazilian\State`
+- `Brazilian\City`
 
 A example for a bank custom model:
 
@@ -70,7 +70,7 @@ Below, the tables that will be created in database.
 
 #### Bank
 
-- Table name: brazilian_banks
+- Table name: brazilian_bank
 - Primary key: id
 
 | Column   | Type    |
@@ -81,7 +81,7 @@ Below, the tables that will be created in database.
 
 #### State
 
-- Table name: brazilian_states
+- Table name: brazilian_state
 - Primary key: id
 - Foreign key: capital_id
   - References: `Brazilian\City`
@@ -95,7 +95,7 @@ Below, the tables that will be created in database.
 
 #### City
 
-- Table name: brazilian_cities
+- Table name: brazilian_city
 - Primary key: id
 - Foreign key: state_id
   - References: `Brazilian\State`
