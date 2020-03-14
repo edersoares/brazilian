@@ -17,7 +17,6 @@ class CreateBrazilianCityTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('state_id');
             $table->string('name');
-            $table->foreign('state_id')->on('brazilian_state')->references('id');
         });
     }
 
